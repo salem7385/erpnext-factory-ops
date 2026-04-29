@@ -1,0 +1,20 @@
+{
+ "content": null,
+ "creation": "2024-05-22 12:00:00.000000",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2024-05-22 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Tire Recycling",
+ "name": "tire-receipt-dashboard",
+ "owner": "Administrator",
+ "page_name": "tire-receipt-dashboard",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "standard": "Yes",
+ "title": "Tire Receipt Dashboard"
+}

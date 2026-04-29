@@ -1,0 +1,56 @@
+name: erpnext-factory
+
+services:
+  backend:
+    image: frappe/erpnext:${ERPNEXT_VERSION}
+    deploy:
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - sites:/home/frappe/frappe-bench/sites
+    environment:
+      DB_HOST: ${MARIADB_HOST}
+      DB_PORT: "3306"
+      REDIS_CACHE: ${REDIS_CACHE}
+      REDIS_QUEUE: ${REDIS_QUEUE}
+    networks:
+      - erpnext-network
+      - mariadb-network
+
+  frontend:
+    image: frappe/erpnext:${ERPNEXT_VERSION}
+    command: nginx-entrypoint.sh
+    deploy:
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - sites:/home/frappe/frappe-bench/sites
+    environment:
+      BACKEND_HOST: backend:8000
+      FRAPPE_SITE_NAME_HEADER: ${FRAPPE_SITE_NAME_HEADER}
+      SOCKETIO_HOST: websocket:9000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.erpnext.rule=${SITES_RULE}"
+      - "traefik.http.services.erpnext.loadbalancer.server.port=8080"
+    networks:
+      - erpnext-network
+      - traefik-public
+
+  websocket:
+    image: frappe/erpnext:${ERPNEXT_VERSION}
+    command: node /home/frappe/frappe-bench/apps/frappe/socketio.js
+    volumes:
+      - sites:/home/frappe/frappe-bench/sites
+    networks:
+      - erpnext-network
+
+networks:
+  erpnext-network:
+  mariadb-network:
+    external: true
+  traefik-public:
+    external: true
+
+volumes:
+  sites:
