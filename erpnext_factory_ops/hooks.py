@@ -25,6 +25,7 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
+app_include_css = "/assets/erpnext_factory_ops/css/factory_tokens.css"
 # app_include_css = "/assets/erpnext_factory_ops/css/erpnext_factory_ops.css"
 # app_include_js = "/assets/erpnext_factory_ops/js/erpnext_factory_ops.js"
 

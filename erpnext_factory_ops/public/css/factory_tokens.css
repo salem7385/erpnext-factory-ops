@@ -1,0 +1,30 @@
+:root {
+    /* ألوان الهوية للمصنع */
+    --factory-primary: #1b4fd8;
+    --factory-primary-light: #e8edfb;
+    --factory-success: #16a34a;
+    --factory-danger: #dc2626;
+    
+    /* ألوان الخلفيات */
+    --bg-main: #f4f5f7;
+    --bg-card: #ffffff;
+    --border-color: #e0e0e0;
+    
+    /* المسافات والزوايا */
+    --radius-standard: 8px;
+    --spacing-md: 15px;
+    --spacing-lg: 25px;
+    
+    /* الظلال */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* تنسيق عام للكروت ليطابق تصميمك */
+.factory-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-standard);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+}
