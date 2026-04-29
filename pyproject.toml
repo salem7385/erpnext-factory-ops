@@ -3,7 +3,7 @@ name = "erpnext_factory_ops"
 authors = [
     { name = "salem7385", email = "sa256483@gmail.com"}
 ]
-description = "Rubber Factory System"
+description = "tire recycle"
 requires-python = ">=3.10"
 readme = "README.md"
 dynamic = ["version"]

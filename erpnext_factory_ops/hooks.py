@@ -1,7 +1,7 @@
 app_name = "erpnext_factory_ops"
-app_title = "Factory Operations"
+app_title = "Erpnext Operations"
 app_publisher = "salem7385"
-app_description = "Rubber Factory System"
+app_description = "tire recycle"
 app_email = "sa256483@gmail.com"
 app_license = "mit"
 
@@ -15,7 +15,7 @@ app_license = "mit"
 # 	{
 # 		"name": "erpnext_factory_ops",
 # 		"logo": "/assets/erpnext_factory_ops/logo.png",
-# 		"title": "Factory Operations",
+# 		"title": "Erpnext Operations",
 # 		"route": "/erpnext_factory_ops",
 # 		"has_permission": "erpnext_factory_ops.api.permission.has_app_permission"
 # 	}
