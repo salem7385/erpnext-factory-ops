@@ -1,0 +1,29 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4" style="color: #1a2a40; font-weight: bold;">كتالوج منتجات تدوير الإطارات</h2>
+    <hr>
+    <div class="row">
+        {% for item in items %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0" style="border-radius: 15px; overflow: hidden;">
+                {% if item.website_image %}
+                <img src="{{ item.website_image }}" class="card-img-top" alt="{{ item.item_name }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                <div class="bg-light text-center py-5" style="height: 200px;">
+                    <i class="fa fa-image fa-3x text-muted"></i>
+                </div>
+                {% endif %}
+                <div class="card-body text-center">
+                    <h5 class="card-title" style="font-weight: 600;">{{ item.item_name }}</h5>
+                    <p class="text-muted small">{{ item.item_group }}</p>
+                    <h4 class="text-primary">{{ "{:,.2f}".format(item.standard_rate) }} ريال</h4>
+                    <a href="/items/{{ item.name }}" class="btn btn-dark btn-block mt-3" style="border-radius: 8px;">تفاصيل المنتج</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
