@@ -34,3 +34,44 @@ for acc in accounts:
 
 frappe.db.commit()
 print("تمت عملية إكمال الأصفار بنجاح لجميع الحسابات (10 أرقام).")
+
+# قائمة الحسابات التفصيلية للنقدية
+cash_hierarchy = [
+    {
+        "num": "1101000000", 
+        "name": "نقدية بالصندوق", 
+        "parent": "1100000000 - أصول متداولة - Ti-BGPS",
+        "is_group": 1
+    },
+    {
+        "num": "1101010000", 
+        "name": "النقدية", 
+        "parent": "1101000000 - نقدية بالصندوق - Ti-BGPS",
+        "is_group": 1
+    },
+    {
+        "num": "1101010001", 
+        "name": "صندوق المصنع - المركز الرئيسي", 
+        "parent": "1101010000 - النقدية - Ti-BGPS",
+        "is_group": 0 # هذا حساب المعاملات النهائي
+    }
+]
+
+for item in cash_hierarchy:
+    full_name = f"{item['num']} - {item['name']} - Ti-BGPS"
+    
+    # التأكد من عدم وجود الحساب قبل الإضافة
+    if not frappe.db.exists("Account", full_name):
+        acc = frappe.new_doc("Account")
+        acc.account_name = item['name']
+        acc.account_number = item['num']
+        acc.parent_account = item['parent']
+        acc.company = "Ti-BGPS"
+        acc.is_group = item['is_group']
+        acc.account_type = "Cash" # تحديد النوع للتعامل مع السندات
+        acc.insert()
+        print(f"تمت إضافة: {full_name}")
+    else:
+        print(f"الحساب موجود مسبقاً: {full_name}")
+
+frappe.db.commit()
