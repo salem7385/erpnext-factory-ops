@@ -5,7 +5,7 @@ app_description = "tire recycle"
 app_email = "sa256483@gmail.com"
 app_license = "mit"
 fixtures = [
-    {"dt": "Account"}
+   # {"dt": "Account"}
 ]
 
 # Apps
