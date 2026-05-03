@@ -4,12 +4,17 @@ app_publisher = "salem7385"
 app_description = "tire recycle"
 app_email = "sa256483@gmail.com"
 app_license = "mit"
+# erpnext_factory_ops/hooks.py
+
 fixtures = [
-    "Print Format",
-    "Letter Head",
-    "Custom Field",
-    "Property Setter"
+    {
+        "dt": "Print Format",
+        "filters": [
+            ["name", "=", "Factory Standard Format"]
+        ]
+    }
 ]
+
 
 # Apps
 # ------------------

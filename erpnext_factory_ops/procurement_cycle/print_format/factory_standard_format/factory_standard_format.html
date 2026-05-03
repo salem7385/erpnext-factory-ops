@@ -1,46 +1,33 @@
-<div class="print-format" dir="rtl" style="font-family: 'Arial', sans-serif;">
-    <div id="header-html">
-        {{ letter_head }}
-    </div>
+<div class="print-format" dir="rtl" style="font-family: 'Arial', sans-serif; padding: 20px; background-color: white; border: 1px solid #eee;">
+    
+    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #005088; padding-bottom: 15px; margin-bottom: 20px;">
+        
+        <div style="width: 35%; text-align: right;">
+            <h3 style="margin: 0; color: #005088; font-size: 18px;">مصنع تدوير الإطارات</h3>
+            <p style="margin: 2px 0; font-size: 11px;">الرقم الضريبي: 310XXXXXXXXXXXX</p>
+            <p style="margin: 2px 0; font-size: 11px;">جدة - المملكة العربية السعودية</p>
+        </div>
 
-    <div style="border-bottom: 2px solid #005088; margin-bottom: 20px; padding-bottom: 10px;">
-        <h2 style="color: #005088; text-align: center;">{{ doc.doctype }}</h2>
-        <div style="display: flex; justify-content: space-between;">
-            <p><strong>رقم المستند:</strong> {{ doc.name }}</p>
-            <p><strong>التاريخ:</strong> {{ doc.get_formatted("posting_date") or doc.get_formatted("transaction_date") }}</p>
+        <div style="width: 20%; text-align: center;">
+            <img src="/files/5555.jpeg" style="max-height: 80px; width: auto;">
+        </div>
+
+        <div style="width: 35%; display: flex; align-items: center; justify-content: flex-end;">
+            <div style="text-align: left; margin-left: 12px;">
+                <h3 style="margin: 0; color: #005088; font-size: 16px;">Tire Recycle Factory</h3>
+                <p style="margin: 2px 0; font-size: 10px;">Jeddah, Saudi Arabia</p>
+            </div>
+            
+            <div style="border: 1px solid #000; padding: 3px; background: white;">
+                {% set total_qty = doc.items | sum(attribute='qty') %}
+                {% set doc_date = doc.get_formatted("posting_date") or doc.get_formatted("transaction_date") %}
+                {% set qr_payload = "ID:" ~ doc.name ~ "|DT:" ~ doc_date ~ "|QTY:" ~ total_qty %}
+                
+                <img src="{{ frappe.utils.make_base64_qrcode(qr_payload) }}" style="width: 75px; height: 75px; display: block;">
+            </div>
         </div>
     </div>
 
-    <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
-        <thead>
-            <tr style="background-color: #f2f2f2;">
-                <th style="border: 1px solid #000; padding: 8px; text-align: center;">م</th>
-                <th style="border: 1px solid #000; padding: 8px;">نوع الإطار</th>
-                <th style="border: 1px solid #000; padding: 8px; text-align: center;">الكمية</th>
-                <th style="border: 1px solid #000; padding: 8px; text-align: center;">الوزن</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in doc.items %}
-            <tr>
-                <td style="border: 1px solid #000; padding: 8px; text-align: center;">{{ item.idx }}</td>
-                <td style="border: 1px solid #000; padding: 8px;">{{ item.tire_type }}</td>
-                <td style="border: 1px solid #000; padding: 8px; text-align: center;">{{ item.qty }}</td>
-                <td style="border: 1px solid #000; padding: 8px; text-align: center;">{{ item.weight }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <div style="margin-top: 40px; display: flex; justify-content: space-between;">
-        <div style="text-align: center;">
-            <p>توقيع المسؤول</p>
-            <div style="margin-top: 30px; border-top: 1px solid #000; width: 150px;"></div>
-        </div>
-        <div style="text-align: center;">
-            <p>ختم المصنع</p>
-            <div style="margin-top: 30px; border: 1px solid #000; width: 100px; height: 100px; border-radius: 50%; display: inline-block;"></div>
-        </div>
-    </div>
-</div>
-
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h2 style="text-decoration: underline; color: #333; margin-bottom: 5px;">{{ _(doc.doctype) }}</h2>
+        <p style="font-weight:
