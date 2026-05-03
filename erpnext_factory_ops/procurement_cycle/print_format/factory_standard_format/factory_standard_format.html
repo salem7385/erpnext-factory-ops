@@ -1,0 +1,46 @@
+<div class="print-format" dir="rtl" style="font-family: 'Arial', sans-serif;">
+    <div id="header-html">
+        {{ letter_head }}
+    </div>
+
+    <div style="border-bottom: 2px solid #005088; margin-bottom: 20px; padding-bottom: 10px;">
+        <h2 style="color: #005088; text-align: center;">{{ doc.doctype }}</h2>
+        <div style="display: flex; justify-content: space-between;">
+            <p><strong>رقم المستند:</strong> {{ doc.name }}</p>
+            <p><strong>التاريخ:</strong> {{ doc.get_formatted("posting_date") or doc.get_formatted("transaction_date") }}</p>
+        </div>
+    </div>
+
+    <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="border: 1px solid #000; padding: 8px; text-align: center;">م</th>
+                <th style="border: 1px solid #000; padding: 8px;">نوع الإطار</th>
+                <th style="border: 1px solid #000; padding: 8px; text-align: center;">الكمية</th>
+                <th style="border: 1px solid #000; padding: 8px; text-align: center;">الوزن</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in doc.items %}
+            <tr>
+                <td style="border: 1px solid #000; padding: 8px; text-align: center;">{{ item.idx }}</td>
+                <td style="border: 1px solid #000; padding: 8px;">{{ item.tire_type }}</td>
+                <td style="border: 1px solid #000; padding: 8px; text-align: center;">{{ item.qty }}</td>
+                <td style="border: 1px solid #000; padding: 8px; text-align: center;">{{ item.weight }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div style="margin-top: 40px; display: flex; justify-content: space-between;">
+        <div style="text-align: center;">
+            <p>توقيع المسؤول</p>
+            <div style="margin-top: 30px; border-top: 1px solid #000; width: 150px;"></div>
+        </div>
+        <div style="text-align: center;">
+            <p>ختم المصنع</p>
+            <div style="margin-top: 30px; border: 1px solid #000; width: 100px; height: 100px; border-radius: 50%; display: inline-block;"></div>
+        </div>
+    </div>
+</div>
+
