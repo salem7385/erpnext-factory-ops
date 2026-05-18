@@ -1,4 +1,6 @@
 {
+ "custom_format": 1,
+ "disabled": 0,
  "doc_type": "Factory Material Receipt",
  "docstatus": 0,
  "doctype": "Print Format",
