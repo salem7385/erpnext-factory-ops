@@ -1,5 +1,5 @@
 app_name = "erpnext_factory_ops"
-app_title = "Erpnext Operations"
+app_title = "Erpnext_factory_ops"
 app_publisher = "salem7385"
 app_description = "tire recycle"
 app_email = "sa256483@gmail.com"
