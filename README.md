@@ -27,3 +27,5 @@ erDiagram
     TIRE_RECEIPT ||--o{ TIRE_RECEIPT_ITEM : contains
     TIRE_RECEIPT_ITEM }o--|| ITEM : references
     TIRE_RECEIPT ||--o| WAREHOUSE : receives_into
+```
+
